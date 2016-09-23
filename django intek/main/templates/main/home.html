@@ -1,0 +1,39 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ contents.title }} | ИнТЭК-Сервис</title>
+<meta name="title" content="{{ contents.title }} | ИнТЭК-Сервис">
+{% endblock %}
+
+{% block description %}
+{{ contents.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ contents.keywords }}
+{% endblock %}
+
+{% block content %}
+    {% load staticfiles %}
+    <div id="da-slider" class="da-slider">
+		{% for slider in sliders %}     
+          <div class="da-slide">
+            <h2>{{ slider.title }}</h2>
+            <p><b>{{ slider.description }}</b></p>
+            <a href="/service/get/{{ slider.id }}/" class="btn btn-default">Подробнее</a>
+            <div class="da-img">{% if slider.media_file %}<img src="{{ slider.media_file.url }}" alt="image{{ slider.id }}" />{% endif %}</div>
+          </div>
+		{% endfor %}
+          <nav class="da-arrows">
+            <span class="da-arrows-prev"></span>
+            <span class="da-arrows-next"></span>
+          </nav>
+      </div>
+      
+      
+      <div id="page" class="container">
+          <div class="otsteup col-xs-12">
+            {{ contents.text|safe }}
+          </div>
+      </div>
+{% endblock %}

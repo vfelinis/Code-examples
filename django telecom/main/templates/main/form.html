@@ -1,0 +1,25 @@
+{% extends 'main/index.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title>Оставить заявку | СервисТелеКом</title>
+<meta name="title" content="Оставить заявку | СервисТелеКом">
+{% endblock %}
+
+{% block description %}
+Оставить заявку
+{% endblock %}
+
+{% block keywords %}
+Оставить заявку
+{% endblock %}
+
+{% block content %}
+{% if thanks %}
+<div id="thanks">{{ thanks }}</div>
+{% endif %}
+<form action="" method="post">{% csrf_token %}
+    {{ form|crispy}}
+    <input type="submit" class="btn btn-info font_color_dark" value="Отправить"/>
+</form>
+{% endblock %}

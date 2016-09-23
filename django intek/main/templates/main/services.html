@@ -1,0 +1,28 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>Все услуги | ИнТЭК-Сервис</title>
+<meta name="title" content="Все услуги | ИнТЕК-Сервис">
+{% endblock %}
+
+{% block description %}
+Все услуги
+{% endblock %}
+
+{% block keywords %}
+Все услуги
+{% endblock %}
+
+{% block content %}
+    {% load staticfiles %}
+      <div id="page" class="container">
+        {% for content in contents %}
+          <div class="services col-sm-3">
+            <div class="service_block" onclick="location.href = '/service/get/{{ content.id }}/'">
+              {% if content.media_file %}<img class="all_service" src="{{ content.media_file.url }}" alt="image{{ content.id }}"><br>{% endif %}
+          	  {{ content.title }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+{% endblock %}

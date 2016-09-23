@@ -1,0 +1,23 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ contents.title }} | ИнТЭК-Сервис</title>
+<meta name="title" content="{{ contents.title }} | ИнТЕК-Сервис">
+{% endblock %}
+
+{% block description %}
+{{ contents.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ contents.keywords }}
+{% endblock %}
+
+{% block content %}
+    {% load staticfiles %}
+      <div id="page" class="container">
+          <div class="otsteup col-xs-12">
+            {{ contents.text|safe }}
+          </div>
+      </div>
+{% endblock %}

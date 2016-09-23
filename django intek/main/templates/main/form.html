@@ -1,0 +1,49 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>Оставить заявку | ИнТЭК-Сервис</title>
+<meta name="title" content="Оставить заявку | ИнТЕК-Сервис">
+{% endblock %}
+
+{% block description %}
+Оставить заявку
+{% endblock %}
+
+{% block keywords %}
+Оставить заявку
+{% endblock %}
+
+{% block content %}
+      <div id="page" class="container">
+          <div class="otsteup col-xs-12">
+			<h2>{{ title }}</h2>
+			{% if form.errors %}
+        		<p style="color: red;">Пожалуйста, исправьте ошибки.</p>
+    		{% endif %}
+			<form action="" method="post" class="form-horizontal" role="form">{% csrf_token %}
+			    {{ form.non_field_errors }}
+				<div class="form-group">
+				  <label class="control-label" for="id_subject">Тема:</label>
+				  {{ form.subject.errors }}
+				  {{ form.subject }}
+				</div>
+				<div class="form-group">
+				  <label class="control-label" for="id_sender">E-mail:</label>
+				  {{ form.sender.errors }}
+				  {{ form.sender }}
+				</div>
+					<div class="form-group">
+				  <label class="control-label" for="id_full_name">Имя:</label>
+				  {{ form.full_name.errors }}
+				  {{ form.full_name }}
+				</div>
+				<div class="form-group">
+				  <label class="control-label" for="id_message">Сообщение:</label><br>
+				  {{ form.message.errors }}
+				  {{ form.message }}
+				</div>
+				<input type="submit" class="btn btn-default" value="Отправить"/>
+			</form>
+          </div>
+      </div>
+{% endblock %}

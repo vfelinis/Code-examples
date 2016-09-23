@@ -1,0 +1,24 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>Акции | СервисТелеКом</title>
+<meta name="title" content="Акции | СервисТелеКом">
+{% endblock %}
+
+{% block description %}
+Акции
+{% endblock %}
+
+{% block keywords %}
+Акции
+{% endblock %}
+
+{% block content %}
+    {% if sales %}{% for s in sales %}
+        <div class="sales">
+            <a class="font_color_92c322" href="{{ s.get_absolute_url }}"><h2>{{ s.title }}</h2></a>
+            <p class="font_size_18">{{ s.description }}</p>
+            <p class="sale_foto"><img src="{{ s.foto.url }}" alt="{{ s.title }}"></p>
+        </div>
+    {% endfor %}{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ onas_one.title }} | СервисТелеКом</title>
+<meta name="title" content="{{ onas_one.title }} | СервисТелеКом">
+{% endblock %}
+
+{% block description %}
+{{ onas_one.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ onas_one.keywords }}
+{% endblock %}
+
+{% block content %}
+    {{ onas_one.text|safe }}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ contents.title }} | ИнТЭК-Сервис</title>
+<meta name="title" content="{{ contents.title }} | ИнТЕК-Сервис">
+{% endblock %}
+
+{% block description %}
+{{ contents.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ contents.keywords }}
+{% endblock %}
+
+{% block content %}
+    {% load staticfiles %}
+      <div id="page" class="container">
+          <div id="article" class="otsteup col-xs-12">
+		      	{{ contents.text|safe }}
+				{% if contents.source %}<a id="source" href="{{ contents.source }}" target="_blank" rel="nofollow">Источник</a>{% endif %}
+          </div>
+		  {% if contents.services.all %}<div id="link" class="otsteup row">
+          <p>Связанные услуги:</p>
+          {% for service in contents.services.all %}<a class="btn btn-primary col-sm-4" href="/service/get/{{ service.id }}/"><span>{{ service.title }}</span></a>{% endfor %}
+        </div>{% endif %}
+      </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ product.title }} | СервисТелеКом</title>
+<meta name="title" content="{{ product.title }} | СервисТелеКом">
+{% endblock %}
+
+{% block description %}
+{{ product.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ product.keywords }}
+{% endblock %}
+
+{% block content %}
+    <div id="product">
+    	<div class="product_box">
+	    	<p><img class="product_foto" src="{{ product.foto.url }}" alt="{{ product.title }}"></p>          
+	    </div>
+	    <div class="product_box">
+	    	{{ product.text|safe }}
+	    </div>
+    </div>
+{% endblock %}

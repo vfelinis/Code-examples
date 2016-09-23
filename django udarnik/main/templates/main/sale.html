@@ -1,0 +1,18 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ sale.title }} | Ударник</title>
+<meta name="title" content="{{ sale.title }} | Ударник">
+{% endblock %}
+
+{% block description %}
+{{ sale.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ sale.keywords }}
+{% endblock %}
+
+{% block content %}
+    {{ sale.text|safe }}
+{% endblock %}

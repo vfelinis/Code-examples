@@ -1,0 +1,18 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ problem_one.title }} | СервисТелеКом</title>
+<meta name="title" content="{{ problem_one.title }} | СервисТелеКом">
+{% endblock %}
+
+{% block description %}
+{{ problem_one.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ problem_one.keywords }}
+{% endblock %}
+
+{% block content %}
+    {{ problem_one.text|safe }}
+{% endblock %}

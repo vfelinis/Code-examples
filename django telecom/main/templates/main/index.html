@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block title %}{% endblock %}
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static 'main/image/favicon.png' %}" type="image/png">
+    <link  href="{% static 'main/css/fotorama.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <script type="text/javascript" src="{% static 'main/js/jquery-1.12.0.min.js' %}"></script>
+    <script src="{% static 'main/js/fotorama.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/prefixfree.min.js' %}"></script>
+</head>
+<body>
+
+    <div id="top_box" class="container-fluid">
+        <div id="top" class="container margin_top_50 margin_bottom_30">
+            <div id="main_name" class="col-sm-6">
+                <p id="p_main_name" class="font_size_45">СервисТелеКом</p>
+                <p id="main_description">{{ home.description }}</p>
+            </div>
+            <div id="main_phone" class="col-sm-6">
+            <img src="{% static 'main/image/logo_telecom.png' %}" alt="logo">
+                <p id="p_main_phone">
+                    <img src="{% static 'main/image/head.phone.png' %}" alt="phone">
+                    {{ contact.phone|safe }}
+                </p>
+                {% if contact.vkontakte %}<a class="font_color" href="{{ contact.vkontakte }}" target="_blank" rel="nofollow"><img src="{% static 'main/image/head.icon1.png' %}" alt="icon1"> Вконтакте</a>{% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div id="sidebar_box" class="container-fluid"><div id="sidebar_bg" class="container-fluid"></div>
+        <div class="container">
+            <nav class="navbar navbar-default" role="navigation">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Навигация</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                    <a id="brand-sidebar" class="navbar-brand"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul id="ul_sidebar" class="nav navbar-nav border-down">
+                    <li><a href="{% url 'home' %}" class="uppercase">{{ menu.home }}</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle uppercase" data-toggle="dropdown">{{ menu.uslugi }} <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                          {% for nav in uslugi %}
+                              <li><a href="{% url 'get_service' service_id=nav.id %}">{{ nav.title }}</a></li>
+                          {% endfor %}
+                      </ul>
+                    </li>
+
+                    {% if more %}
+                    {% regroup more by menu as menu_list %}
+                    {% for m in menu_list %}
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle uppercase" data-toggle="dropdown">{{ m.grouper }} <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                            {% for item in m.list %}
+                                <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
+                            {% endfor %}
+                          </ul>
+                        </li>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if one %}
+                        {% for o in one %}
+                            <li><a href="{{ o.get_absolute_url }}" class="uppercase">{{ o.title }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                    <li><a href="{% url 'sale' %}" class="uppercase">{{ menu.sale }}</a></li>
+                    <li><a href="{% url 'message' %}" class="uppercase">{{ menu.zadat_vopros }}</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle uppercase" data-toggle="dropdown">{{ menu.o_nas }} <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="http://perm.flamp.ru/search/servistelekom_torgovo_servisnaya_firma-70000001017389750" target="_blank" rel="nofollow">Отзывы</a></li>
+
+                        {% if onas %}
+                            {% for on in onas %}
+                                <li><a href="{{ on.get_absolute_url }}">{{ on.title }}</a></li>
+                            {% endfor %}
+                        {% endif %}
+
+                      </ul>
+                    </li>
+                    <li><a href="{% url 'contact' %}" class="uppercase">{{ menu.contact }}</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+        </div>
+    </div>
+
+    {% block slider %}{% endblock %}
+
+    <div id="content_box" class="container-fluid">
+        <div class="container">
+            <div id="content" class="col-md-9">
+               {% block content %}{% endblock %}
+            </div>
+            <div id="content_right" class="col-md-3">
+                <!-- <div class="otziv">
+                    <h4>Антон Нимцов</h4>
+                    <p>Долго искал где можно быстро и надежно починить свои гаджеты. Дети не дают расслабиться. Отвернулся и бах!))) Попал к ребятам по совету друзей. Обращаюсь к ним уже...</p>
+                    <p class="otziv_href"><a href="#">Читать далее</a></p>
+                </div> -->
+                <div class="zayavka">
+                    <a href="{% url 'message' %}" class="btn btn-success"><span class="glyphicon glyphicon-wrench"></span> Оставить заявку</a>
+                </div>
+                <div id="last_news">
+                    <h3>Последние новости</h3>
+                        {% for entry in feeds.entries|slice:":3" %}
+                            <div class="last_new">
+                                <h4><a class="font_color" href="{{entry.link}}" target="_blank" rel="nofollow">{{entry.title}}</a></h4>
+                                <p>{{entry.description}}</p>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if problem %}
+    <div id="answer_box" class="container-fluid">
+        <div id="answer" class="container">
+            {% for pr in problem %}
+                <div class="box">
+                    <a href="{{ pr.get_absolute_url }}"><img src="{{ pr.icon.url }}" alt="{{ pr.title }}"> {{ pr.title }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    <div id="footer_box" class="container-fluid">
+        <div id="footer" class="container">
+            <div class="col-sm-6 footer_left">
+                Copyright © «СервисТелеКом», {{ home.years }}<br /><br />
+                <div><!-- Yandex.Metrika informer --> <a href="https://metrika.yandex.ru/stat/?id=35616645&amp;from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/35616645/3_0_FFFFFFFF_FFFFFFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" /></a> <!-- /Yandex.Metrika informer --> <!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter35616645 = new Ya.Metrika({ id:35616645, clickmap:true, trackLinks:true, accurateTrackBounce:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/35616645" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter --></div>
+            </div>
+            <div class="col-sm-6 footer_right">
+                <div id="footer_nav">
+                    <ul>
+                        <li><a href="{% url 'message' %}">Обратная связь</a></li>
+                        <li><a href="{% url 'home' %}">{{ menu.home }}</a></li>
+                    </ul>
+                </div>
+                <p>
+                {{ contact.phone|safe }}
+                </p>
+                <p>
+                {{ contact.email|safe }}
+                </p>
+                {% if contact.vkontakte %}<a class="font_color" href="{{ contact.vkontakte }}" target="_blank" rel="nofollow">{{ contact.vkontakte }}</a>{% endif %}               
+            </div>
+        </div>
+    </div>
+</body>
+</html>

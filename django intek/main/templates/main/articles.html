@@ -1,0 +1,30 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>Все статьи | ИнТЭК-Сервис</title>
+<meta name="title" content="Все статьи | ИнТЕК-Сервис">
+{% endblock %}
+
+{% block description %}
+Все статьи
+{% endblock %}
+
+{% block keywords %}
+Все статьи
+{% endblock %}
+
+{% block content %}
+      <div id="page" class="container">
+        {% for content in contents %}
+        {% if content %}
+          <div class="otsteup col-sm-6">
+          <div class="articles">
+            <span>{{ content.title }}</span>
+          	<p>{{ content.description }}</p>
+			<a href="/article/get/{{ content.id }}/" class="btn btn-default">Подробнее</a>
+          </div>
+          </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+{% endblock %}

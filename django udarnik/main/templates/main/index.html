@@ -1,0 +1,98 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="shortcut icon" href="{% static 'main/images/favicon.png' %}" type="image/png">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'main/css/fotorama.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/stylemain.css' %}">
+        {% block title %}{% endblock %}
+        <meta name="keywords" content="{% block keywords %}{% endblock %}">
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <script type="text/javascript" src="{% static 'main/js/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'main/js/fotorama.js' %}"></script>
+        <script type="text/javascript" src="{% static 'main/js/bootstrap.js' %}"></script>
+        <script type="text/javascript" src="{% static 'main/js/script.js' %}"></script>
+        <script type="text/javascript" src="{% static 'main/js/prefixfree.min.js' %}"></script>
+    </head>
+    <body>
+        <div id="super"><div id="zaglushka"></div>
+            <div class="container-fluid" id="nav-head">     
+                <div id="nav-top" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                    <div class="container" id="positionlogo">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
+                                <span class="sr-only">Открыть навигацию</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="brand navbar-brand" href="/">
+                               <img id="logo" src="{% static 'main/images/logo.jpg' %}" alt="logo">
+                            </a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="responsive-menu">
+                            
+                          <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span> Главная</a></li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span> Услуги <b class="caret"></b></a>
+                              <ul class="dropdown-menu">
+                                {% for ser in services %}
+                                <li><a href="{{ ser.get_absolute_url }}">{{ ser.title }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </li>
+                            <li><a href="{% url 'sales' %}"><span class="glyphicon glyphicon-th-large"></span> Акции и предложения</a></li>
+                            <li><a href="{% url 'message' %}"><span class="glyphicon glyphicon-envelope"></span> Оставить заявку</a></li>
+                            <li><a href="{% url 'about' %}"><span class="glyphicon glyphicon-user"></span> О нас</a></li>
+                            <li><a href="{% url 'contact' %}"><span class="glyphicon glyphicon-phone"></span> Контакты</a></li>
+                          </ul>           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% block effect %}{% endblock %}
+
+            <div id="content_box" class="container-fluid">
+                <div id="content" class="container">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <div id="footer" class="container-fluid">        
+          <div id="my_footer" class="container">
+            <div class="row">
+              <div class="col-sm-3">
+                <span>НАВИГАЦИЯ</span><br>
+                <span><a href="{% url 'home' %}">Главная</a></span><br>
+                <span><a href="{% url 'sales' %}">Акции и предложения</a></span><br>
+                <span><a href="{% url 'message' %}">Оставить заявку</a></span><br>
+                <span><a href="{% url 'about' %}">О нас</a></span><br>
+                <span><a href="{% url 'contact' %}">Контакты</a></span>  
+              </div>
+              <div class="col-sm-3">
+                <span>КОНТАКТЫ</span><br>
+                <span>{{ contact.phone|safe }}</span><br>            
+                <span>Email: {{ contact.email }}</span><br>
+                <span>Адрес: {{ contact.address }}</span>
+              </div>
+              <div class="col-sm-3">
+                <span>СХЕМА ПРОЕЗДА</span><br>
+                <div id="schema"><a href="{% url 'contact' %}"><img src="{% static 'main/images/schema.png' %}" alt="Схема проезда"/></a></div>
+              </div>
+              <div class="col-sm-3">
+                <span>МЫ В СОЦИАЛЬНЫХ СЕТЯХ</span><br>
+                <span><a href="#" target="_blank" rel="nofollow">Вконтакте</a></span><br><br>
+                <!-- Yandex.Metrika informer --> <a href="https://metrika.yandex.ru/stat/?id=36075845&amp;from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/36075845/3_1_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:36075845,lang:'ru'});return false}catch(e){}" /></a> <!-- /Yandex.Metrika informer --> <!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter36075845 = new Ya.Metrika({ id:36075845, clickmap:true, trackLinks:true, accurateTrackBounce:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/36075845" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+              </div>
+            </div>
+            <small>Copyright &copy; Компания "УДАРНИК", {{ contact.years }}</small> 
+          </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,298 @@
+/*@keyframes spin{
+	from{
+	transform: rotateY(0deg);
+	}
+	to{
+	transform: rotateY(360deg);
+	}
+}
+@media screen and (max-width: 48em) {
+.logo{
+ 	width: 50px;
+}
+}*/
+
+@media screen and (max-width: 48em) {
+#text_logo::before{
+	content: "ИнТЭК-Сервис";
+}
+}
+
+@media screen and (min-width: 48em) {
+#text_logo::before{
+	content: "ИнТЭК-Сервис";
+}
+}
+
+@media screen and (max-width: 18.4em) {
+#text_logo::before{
+	content: "ИнТЭК";
+}
+}
+a{
+	transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	-webkit-transition: all .5s ease-in-out;
+}
+.brand{
+	perspective: 900px;
+	-moz-perspective: 900px;
+	-o-perspective: 900px;
+	-webkit-perspective: 900px;
+}
+/*#cube{
+	position: relative;
+	-webkit-transform-origin: 50% 50% -25px;
+	-webkit-transform-style: preserve-3d;
+	/*-webkit-transform: rotate3d(1,1,1,50deg);
+	top: -15px;
+	left: -15px;
+}*/
+#logo{
+ width: 50px;
+ height: 50px;
+ 
+ left: 0;
+ position: absolute;
+ top: 0;
+ transform-origin: 50% 50% -25px;
+ transform-style: preserve-3d;
+ -moz-transform-origin: 50% 50% -25px;
+ -moz-transform-style: preserve-3d;
+ -o-transform-origin: 50% 50% -25px;
+ -o-transform-style: preserve-3d;
+ -webkit-transform-origin: 50% 50% -25px;
+ -webkit-transform-style: preserve-3d;
+ /*-webkit-transform: rotate3d(1,1,1,50deg);*/
+}
+.side{
+ /*border:1px solid #3a3f44;*/
+ background: #466f6d;
+ width: 50px;
+ height: 50px;
+ left: 0;
+ position: absolute;
+ top: 0;
+ transform-origin: 50% 50% -25px;
+ -moz-transform-origin: 50% 50% -25px;
+ -o-transform-origin: 50% 50% -25px;
+ -webkit-transform-origin: 50% 50% -25px;
+}
+#side2{
+	transform: rotateY(90deg);
+	-moz-transform: rotateY(90deg);
+	-o-transform: rotateY(90deg);
+	-webkit-transform: rotateY(90deg);
+}
+#side3{
+	transform: rotateY(-90deg);
+	-moz-transform: rotateY(-90deg);
+	-o-transform: rotateY(-90deg);
+	-webkit-transform: rotateY(-90deg);
+}
+#side4{
+	transform: rotateX(90deg);
+	-moz-transform: rotateX(90deg);
+	-o-transform: rotateX(90deg);
+	-webkit-transform: rotateX(90deg);
+}
+#side5{
+	transform: rotateX(-90deg);
+	-moz-transform: rotateX(-90deg);
+	-o-transform: rotateX(-90deg);
+	-webkit-transform: rotateX(-90deg);
+}
+#side6{
+	transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	-o-transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+}
+#logo img{
+	max-width: 100%;
+	max-height: 100%;
+	/*animation-name: spin;
+	animation-duration: 3s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;*/
+}
+#text_logo{
+	text-indent: 3.3em;
+	color: #fff;
+}
+#positionlogo{
+	position: relative;
+}
+.navbar{
+	z-index: 9999;
+}
+body{
+	padding: 0;
+	margin: 0;
+	background: #fff;
+}
+#nav-head{
+	padding: 0;
+}
+#nav-top{
+	border-top: 6px solid #466f6d;
+}
+#sep{
+	margin: 0;
+	display: table-cell;
+	padding-left: 5px;
+	vertical-align: bottom;
+	color: #aaa;
+	height: 100px;
+}
+#content{
+    color: #3a3f44;
+	margin-top: 5px;
+	padding: 0;
+	border-top: 6px solid #466f6d;
+}
+#page{
+    padding: 20px 0;
+}
+.otsteup{
+	padding: 0;
+	margin: 0;
+}
+#schema{
+	width: 140px;
+	height: 100px;
+	background-color: #fff;
+}
+#footer{
+	padding: 0;
+	background-image: linear-gradient(#484e55, #3a3f44 60%, #313539);
+	background-image: -webkit-linear-gradient(#484e55, #3a3f44 60%, #313539);
+  	background-repeat: no-repeat;
+	/*background-color: #4A3C31;*/
+	border-bottom: 6px solid #466f6d;
+}
+#my_footer{
+	padding: 0;
+	font-size: 90%;
+	/*background-image: linear-gradient(#8a9196, #7a8288 60%, #70787d);*/
+}
+#my_footer .col-sm-3{
+	margin-top: 5px;
+}
+#my_footer span, #my_footer small{
+	color: #fff;
+}
+.clear{
+	clear: both;
+}
+form{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#contact_email{
+	color: #3a3f44;
+}
+.img_service{
+	max-width: 100%;
+	padding-right: 10px;
+}
+.services{
+	padding-left: 30px;
+	height: 220px;
+}
+.service_block{
+	transition: all .3s linear;
+	color: #3a3f44;
+	background-color: #eee;
+	display: table-cell;
+	vertical-align: middle;
+	overflow: hidden;
+	text-align: center;
+	cursor: pointer;
+	width: 170px;
+	height: 200px;
+	border: 3px solid #466f6d;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.service_block:hover{
+	color: #fff;
+	background-color: #466f6d;
+	border: 3px solid #3a3f44;
+	-webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+.all_service{
+	width: 100px;
+}
+.price{
+	margin-bottom: 20px;
+	margin-left: 0;
+	margin-right: 0;
+	color: #fff;
+	background-color: #466f6d;
+	text-align: center;
+	/*height: 25px;
+	line-height: 25px;*/
+	border: 1px solid #3a3f44;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);	
+}
+#id_message{
+	max-width: 100%;
+}
+.articles{
+	display: inline-block;
+	border-top: 1px solid #3a3f44;
+	border-bottom: 1px solid #3a3f44;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	padding-bottom: 10px;
+}
+.articles span{
+	font-size: 20px;
+	color: #3a3f44;
+}
+#link{
+	padding-top: 50px;
+}
+#link p{
+	color: #3a3f44;
+	margin: 0;
+}
+#link a{
+	white-space: normal;
+	height: 40px;
+	display: block;
+	padding: 0;
+}
+#link a span{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	height: 40px;
+	width: 100em;
+	line-height: 14px;
+}
+#source{
+	color: #3a3f44;
+}
+#source:hover{
+	color: #3a3f44;
+}
+#source:active{
+	color: #3a3f44;
+}
+#article{
+	padding-bottom: 50px;
+}
+#page img{
+	max-width: 100%;
+}

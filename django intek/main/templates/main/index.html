@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block title %}{% endblock %}
+    
+
+    <meta name="description" content="{% block description %}{% endblock %}">
+
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+
+    
+     {% load staticfiles %}
+    <link href="{% static 'main/css/bootstrap.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style2.css' %}">
+    <script type="text/javascript" src="{% static 'main/js/jquery.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/myscript.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/wow.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/jquery.cslider.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/modernizr.custom.28468.js' %}"></script>
+    <noscript>
+      <link rel="stylesheet" type="text/css" href="{% static 'main/css/nojs.css' %}" />
+    </noscript>
+    <script type="text/javascript" src="{% static 'main/js/prefixfree.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap-fix.css' %}">
+  </head>
+  <body>
+    <div class="container-fluid" id="nav-head">     
+	    <div id="nav-top" class="navbar navbar-default navbar-fixed-top" role="navigation">
+  		  <div class="container" id="positionlogo">
+    			<div class="navbar-header f_left wow bounceInLeft">
+    				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
+    					<span class="sr-only">Открыть навигацию</span>
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    				</button>
+    				<a class="brand navbar-brand" href="{% url 'home' %}">
+
+              
+                  <div id="logo">
+                    <div class="side" id="side1"><img src="{% static 'main/image/logo4.png' %}" alt="Логотип1"></div>
+                    <div class="side" id="side2"><img src="{% static 'main/image/logo4.png' %}" alt="Логотип2"></div>
+                    <div class="side" id="side3"><img src="{% static 'main/image/logo4.png' %}" alt="Логотип3"></div>
+                    <div class="side" id="side4"><img src="{% static 'main/image/logo4.png' %}" alt="Логотип4"></div>
+                    <div class="side" id="side5"><img src="{% static 'main/image/logo4.png' %}" alt="Логотип5"></div>
+                    <div class="side" id="side6"><img src="{% static 'main/image/logo4.png' %}" alt="Логотип6"></div>
+                  </div>
+            
+                
+
+              
+              <p id="text_logo"></p>
+            </a>
+    			</div>
+    			<div class="collapse navbar-collapse" id="responsive-menu">
+    				
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Услуги <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                {% for nav in navbar %}
+                <li><a href="/service/get/{{ nav.id }}/">{{ nav.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+		      	<li><a href="{% url 'articles' %}">Статьи</a></li>
+            <li><a href="{% url 'message' %}">Оставить заявку</a></li>
+            <li><a href="{% url 'about' %}">О нас</a></li>
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
+          </ul>           
+    			</div>
+        </div>
+      </div>
+  	</div>
+
+    <div id="sep">
+      Монтаж инженерного оборудования зданий и сооружений
+      <div class="clear"></div>
+    </div>
+
+    <div class="container-fluid" id="content">
+        
+        {% block content %}{% endblock %}
+
+      <div class="clear"></div>      
+    </div>
+    <div id="footer" class="container-fluid">
+        
+          <div id="my_footer" class="container">
+          <div class="otsteup row">
+
+            <div class="col-sm-3">
+              <span><a href="{% url 'home' %}">Главная</a></span><br>
+              <span><a href="{% url 'services' %}">Услуги</a></span><br>
+			        <span><a href="{% url 'articles' %}">Статьи</a></span><br>
+              <span><a href="{% url 'message' %}">Оставить заявку</a></span><br>
+              <span><a href="{% url 'about' %}">О нас</a></span><br>
+              <span><a href="{% url 'contact' %}">Контакты</a></span>
+          
+            </div>
+            <div class="col-sm-3">
+              <span>Телефоны:</span><br>
+              <span>{{ contacts.phone }}</span><br>
+              {% if contacts.phone2 %}<span>{{ contacts.phone2 }}</span><br>{% endif %}
+              {% if contacts.phone3 %}<span>{{ contacts.phone3 }}</span><br>{% endif %}
+              <span>Email: {{ contacts.email }}</span><br>
+              <span>Адрес: {{ contacts.address|safe }}</span>
+            </div>
+            <div class="col-sm-3">
+              <span>Схема проезда:</span><br>
+              <div id="schema"><a href="https://www.google.ru/maps/place/%D0%9F%D0%B5%D1%80%D0%B5%D0%B5%D0%B7%D0%B4%D0%BD%D0%B0%D1%8F+%D1%83%D0%BB.,+1,+%D0%9F%D0%B5%D1%80%D0%BC%D1%8C,+%D0%9F%D0%B5%D1%80%D0%BC%D1%81%D0%BA%D0%B8%D0%B9+%D0%BA%D1%80%D0%B0%D0%B9,+614056/@58.0712242,56.3471192,17z/data=!4m2!3m1!1s0x43e8c456aa93fd8d:0xe281b32bdf5f92e6" target="_blank" rel="nofollow"><img src="{% static 'main/image/schema.png' %}" alt="Схема проезда"/></a></div>
+            </div>
+            <div class="col-sm-3">
+              <span>Мы в социальных сетях:</span><br>
+              {% for social in socials %}
+              <span><a href="{{ social.url }}" target="_blank" rel="nofollow">{{ social.name }}</a></span><br>
+              {% endfor %}<br>
+                <script type="text/javascript">
+                  document.write("<a href='//www.liveinternet.ru/click' "+
+                  "target=_blank rel='nofollow'><img src='//counter.yadro.ru/hit?t24.4;r"+
+                  escape(document.referrer)+((typeof(screen)=="undefined")?"":
+                  ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+                  screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+                  ";"+Math.random()+
+                  "' alt='' title='LiveInternet: показано число посетителей за"+
+                  " сегодня' "+
+                  "border='0' width='88' height='15'><\/a>")
+                </script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter31617603 = new Ya.Metrika({
+                    id:31617603,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<!-- /Yandex.Metrika counter -->
+            </div>
+          </div>
+          <small>Copyright &copy; ИнТЭК-Сервис</small> 
+        </div>
+    </div>
+    <script>
+      new WOW().init();
+      $(function() {
+          $('#da-slider').cslider({
+            autoplay  : true,
+            bgincrement : 450
+          });
+      });
+    </script>
+  </body>
+</html>

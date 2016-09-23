@@ -1,0 +1,37 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ contents.title }} | ИнТЭК-Сервис</title>
+<meta name="title" content="{{ contents.title }} | ИнТЕК-Сервис">
+{% endblock %}
+
+{% block description %}
+{{ contents.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ contents.keywords }}
+{% endblock %}
+
+{% block content %}
+    {% load staticfiles %}
+      <div id="page" class="container">
+      	{% if contents.price %}
+      	<div class="otsteup row">
+          <div class="otsteup col-xs-12 price">
+          	{{ contents.price }}
+          </div>
+        </div>
+        {% endif %}
+        <div class="otsteup row">
+          	{% if contents.media_file %}
+          		<div class="otsteup col-sm-3"><img class="img_service" src="{{ contents.media_file.url }}" alt="image{{ contents.id }}"></div>
+          	{% endif %}
+		    <div class="otsteup col-sm-9">{{ contents.text|safe }}</div>
+        </div>
+        <div id="link" class="otsteup row">
+          <p>Другие услуги:</p>
+          {% for link in links %}{% if link.id != contents.id %}<a class="btn btn-primary col-sm-4" href="/service/get/{{ link.id }}/"><span>{{ link.title }}</span></a>{% endif %}{% endfor %}
+        </div> 
+      </div>
+{% endblock %}

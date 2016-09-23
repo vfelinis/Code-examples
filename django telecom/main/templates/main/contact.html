@@ -1,0 +1,40 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ contact.title }} | СервисТелеКом</title>
+<meta name="title" content="{{ contents.title }} | СервисТелеКом">
+{% endblock %}
+
+{% block description %}
+{{ contact.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ contact.keywords }}
+{% endblock %}
+
+{% block content %}
+    <div class="margin_bottom_15">{{ contact.email|safe }}</div>
+    {% if contact.vkontakte %}<div class="margin_bottom_15"><a class="font_color" href="{{ contact.vkontakte }}" target="_blank" rel="nofollow">Мы в Вконтакте: {{ contact.vkontakte }}</a></div>{% endif %}
+    {% if contact.text %}<div>{{ contact.text|safe }}</div>{% endif %}
+    {% if contact.address_1 %}<div>{{ contact.address_1|safe }}</div>{% endif %}
+    <div class="address_flex margin_bottom_30">
+    	{% if contact.address_1_map %}<div class="address_box">{{ contact.address_1_map|safe }}</div>{% endif %}
+    	{% if contact.address_1_foto %}<div class="address_box"><div class="fotorama" data-allowfullscreen="true" data-fit="cover" data-width="320" data-height="320"><img src="{{ contact.address_1_foto.url }}" alt="address1"></div></div>{% endif %}
+    </div>
+    {% if contact.address_2 %}<div>{{ contact.address_2|safe }}</div>{% endif %}
+    <div class="address_flex margin_bottom_30">
+    	{% if contact.address_2_map %}<div class="address_box">{{ contact.address_2_map|safe }}</div>{% endif %}
+    	{% if contact.address_2_foto %}<div class="address_box"><div class="fotorama" data-allowfullscreen="true" data-fit="cover" data-width="320" data-height="320"><img src="{{ contact.address_2_foto.url }}" alt="address2"></div></div>{% endif %}
+    </div>
+    {% if contact.address_3 %}<div>{{ contact.address_3|safe }}</div>{% endif %}
+    <div class="address_flex margin_bottom_30">
+    	{% if contact.address_3_map %}<div class="address_box">{{ contact.address_3_map|safe }}</div>{% endif %}
+    	{% if contact.address_3_foto %}<div class="address_box"><div class="fotorama" data-allowfullscreen="true" data-fit="cover" data-width="320" data-height="320"><img src="{{ contact.address_3_foto.url }}" alt="address3"></div></div>{% endif %}
+    </div>
+    {% if contact.address_4 %}<div>{{ contact.address_4|safe }}</div>{% endif %}
+    <div class="address_flex margin_bottom_30">
+    	{% if contact.address_4_map %}<div class="address_box">{{ contact.address_4_map|safe }}</div>{% endif %}
+    	{% if contact.address_4_foto %}<div class="address_box"><div class="fotorama" data-allowfullscreen="true" data-fit="cover" data-width="320" data-height="320"><img src="{{ contact.address_4_foto.url }}" alt="address4"></div></div>{% endif %}
+    </div>
+{% endblock %}

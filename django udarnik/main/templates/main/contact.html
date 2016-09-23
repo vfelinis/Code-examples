@@ -1,0 +1,23 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ contact.title }} | Ударник</title>
+<meta name="title" content="{{ contact.title }} | Ударник">
+{% endblock %}
+
+{% block keywords %}
+{{ contact.keywords }}
+{% endblock %}
+
+{% block description %}
+{{ contact.description }}
+{% endblock %}
+
+{% block content %}
+<h3 class="main_title">Контакты</h3>
+{{ contact.text|safe }}
+<div id="map">
+	{{ contact.maps|safe }}
+</div>
+
+{% endblock %}

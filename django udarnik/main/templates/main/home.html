@@ -1,0 +1,66 @@
+{% extends 'main/index.html' %}
+{% load staticfiles %}
+{% block title %}
+<title>{{ home.title }} | Ударник</title>
+<meta name="title" content="{{ home.title }} | Ударник">
+{% endblock %}
+
+{% block keywords %}
+{{ home.keywords }}
+{% endblock %}
+
+{% block description %}
+{{ home.description }}
+{% endblock %}
+
+{% block content %}
+{% if sales %}
+<h3 class="main_title">Акции и предложения</h3>
+<div id="slider">
+    <div class="fotorama" data-width="100%" data-ratio="1000/500" data-autoplay="5000" data-click="false" data-stopautoplayontouch="true">
+        {% for s in sales %}
+        <div><img src="{{ s.foto.url }}" alt="{{ s.title }}"><div class="more" onclick="location.href='{{ s.get_absolute_url }}'">Подробнее...</div></div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endif %}
+{% if services %}
+<h3 class="main_title">Наши услуги</h3>
+<div id="flex_uslugi">
+    {% for s in services %}
+    <div class="box_uslugi">
+        <div class="uslugi">
+            <h4>{{ s.title }}</h4>
+            {% if s.foto %} <img src="{{ s.foto.url }}" alt="{{ s.title }}">{% endif %}
+            <p>{{ s.description }}</p>
+            <a href="{{ s.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+        </div>               
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% if home.text %}<div id="home_text">{{ home.text|safe }}</div>{% endif %}
+{% endblock %}
+
+{% block effect %}
+<div id="body">
+    <div id="text">
+        <h2>Не теряй времени, доверь заботы профессионалам</h2>
+    </div>
+    <div id="main">
+        <div id="setka_bg"></div>
+        <div id="day" class="container-fluid">
+        <ul id="scene1">
+          <li><img id="sun" src="{% static 'main/images/sun.png' %}"></li>
+        </ul>
+        </div>
+        <div id="night" class="container-fluid">
+        <ul id="scene2">
+          <li><img id="moon" src="{% static 'main/images/moon.png' %}"></li> 
+        </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

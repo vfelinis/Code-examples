@@ -1,0 +1,33 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ home.title }} | СервисТелеКом</title>
+<meta name="title" content="{{ contents.title }} | СервисТелеКом">
+{% endblock %}
+
+{% block description %}
+{{ home.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ home.keywords }}
+{% endblock %}
+
+{% block content %}
+    {{ home.text|safe }}
+{% endblock %}
+
+{% block slider %}
+<div id="slider_box" class="container-fluid">
+        <div class="container">
+            <div class="fotorama" data-width="100%" data-ratio="1000/500" data-autoplay="5000" data-click="false" data-stopautoplayontouch="false">
+            {% for u in uslugi %}
+                <div class="foto_image"><div class="slider_text"><a class="font_color_92c322" onclick="location.href='/service/get/{{ u.id }}/'"><div><h2>{{ u.title }}</h2><p>{{ u.description }}</p></div></a></div><img src="{{ u.foto.url }}" alt="{{ u.title }}"></div>
+            {% endfor %}
+            {% if sales %}{% for s in sales %}
+                <div class="foto_image"><div class="slider_text"><a class="font_color_92c322" onclick="location.href='{{ s.get_absolute_url }}'"><div><h2>{{ s.title }}</h2><p>{{ s.description }}</p></div></a></div><img src="{{ s.foto.url }}" alt="{{ s.title }}"></div>
+            {% endfor %}{% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

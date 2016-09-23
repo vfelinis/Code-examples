@@ -1,0 +1,53 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ another.title }} | СервисТелеКом</title>
+<meta name="title" content="{{ another.title }} | СервисТелеКом">
+{% endblock %}
+
+{% block description %}
+{{ another.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ another.keywords }}
+{% endblock %}
+
+{% block content %}
+    {% if another.text %}{{ another.text|safe }}{% endif %}
+    {% if products or request.GET.q %}
+    <div id="search">
+    <form role="search" method="GET" action="">
+        <div class="form-group">
+          <input id="search_input" type="text" class="form-control" name="q" placeholder="Поиск по товарам" value="{{ request.GET.q }}"><button type="submit" class="btn btn-default">Найти</button>
+        </div>
+    </form>
+    </div>
+    {% endif %}
+    {% if products %}
+    <div id="products">
+	{% for product in products %}
+		<div class="products_box">
+        <div class="product_border">
+	    	<a href="{{ product.get_absolute_url }}"><h4>{{ product.title }}</h4></a>
+	    	<p><a href="{{ product.get_absolute_url }}"><img class="product_foto" src="{{ product.foto.url }}" alt="{{ product.title }}"></a></p>
+            <p class="product_description">{{ product.description }}</p>
+            {% if product.price_on_new %}<p class="product_price_on_new">{{ product.price_on_new|safe }}</p>{% endif %}
+            <p class="product_price">Цена: {{ product.price }}</p>
+        </div>
+	    </div>
+	{% endfor %}
+	</div>
+<div class="center">
+<div class="pagination">
+{% if products.has_previous %}
+<li><a href="?page={{ products.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a></li>
+{% endif %}
+<li><a>Страница {{ products.number }} из {{ products.paginator.num_pages }}</a></li>
+{% if products.has_next %}
+<li><a href="?page={{ products.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a></li>
+{% endif %}
+</div>
+</div>
+    {% endif %}
+{% endblock %}

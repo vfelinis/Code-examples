@@ -1,0 +1,21 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>{{ sale.title }} | СервисТелеКом</title>
+<meta name="title" content="{{ sale.title }} | СервисТелеКом">
+{% endblock %}
+
+{% block description %}
+{{ sale.description }}
+{% endblock %}
+
+{% block keywords %}
+{{ sale.keywords }}
+{% endblock %}
+
+{% block content %}
+    <p><h2>{{ sale.title }}</h2></p>
+    <p class="font_size_18">{{ sale.description }}</p>
+    <p class="sale_foto"><img src="{{ sale.foto.url }}" alt="{{ sale.title }}"></p>
+    {% if sale.text %}<p>{{ sale.text|safe }}</p>{% endif %}
+{% endblock %}

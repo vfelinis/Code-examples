@@ -1,0 +1,29 @@
+{% extends 'main/index.html' %}
+
+{% block title %}
+<title>Акции и предложения | Ударник</title>
+<meta name="title" content="Акции и предложения | Ударник">
+{% endblock %}
+
+{% block description %}
+Акции и предложения
+{% endblock %}
+
+{% block keywords %}
+Акции и предложения
+{% endblock %}
+
+{% block content %}
+	<h3 class="main_title">Акции и предложения</h3>
+	<div id="flex_sales">
+    {% for s in sales %}
+        <div class="box_sales">
+        	<div class="sales">
+            <h4 class="sale_title">{{ s.title }}</h4>
+            <p class="sale_description">{{ s.description }}</p>
+            <a href="{{ s.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
